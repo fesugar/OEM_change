@@ -1,0 +1,82 @@
+﻿{
+  "惠普": {
+    "Manufacturer": "HP",
+    "Model": "HP Notebook",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://support.hp.com",
+    "Logo": "\\bmp\\hp_logo_100x100.bmp"
+  },
+  "联想": {
+    "Manufacturer": "Lenovo",
+    "Model": "Lenovo Notebook",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.Lenovo.com",
+    "Logo": "\\bmp\\LENOVO_BADGE.bmp"
+  },
+  "三星": {
+    "Manufacturer": "Samsung",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.Samsung.com",
+    "Logo": "\\bmp\\SAMSUNG_BADGE.BMP"
+  },
+  "华硕": {
+    "Manufacturer": "ASUS",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.asus.com",
+    "Logo": "\\bmp\\ASUS_BADGE.bmp"
+  },
+  "戴尔": {
+    "Manufacturer": "Dell",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "24 hours a day, 7 days a week",
+    "SupportURL": "http://www.Dell.com",
+    "Logo": "\\bmp\\DELL_BADGE.bmp"
+  },
+  "索尼": {
+    "Manufacturer": "Sony",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.SONY.com",
+    "Logo": "\\bmp\\VAIO_BADGE.BMP"
+  },
+  "东芝": {
+    "Manufacturer": "Toshiba",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.Toshiba.com",
+    "Logo": "\\bmp\\TOSHIBA_BADGE.BMP"
+  },
+  "神舟": {
+    "Manufacturer": "Hasee",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "",
+    "Logo": "\\bmp\\HASEE_BADGE.bmp"
+  },
+  "LG": {
+    "Manufacturer": "LG",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.lge.com",
+    "Logo": "\\bmp\\LG_BADGE.BMP"
+  },
+  "宏基": {
+    "Manufacturer": "Acer",
+    "Model": "",
+    "SupportPhone": "",
+    "SupportHours": "",
+    "SupportURL": "http://www.acer.com",
+    "Logo": "\\bmp\\ACER_BADGE.BMP"
+  }
+}
