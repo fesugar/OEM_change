@@ -190,7 +190,8 @@ namespace OEMchange
         {
             try
             {
-
+                this.MaximumSize = this.Size;
+                this.MinimumSize = this.Size;
                 this.GetINFO();
                 this.StringInitialize();
                 lblCurrentSystem.Text += My.MyProject.Computer.Info.OSFullName;

@@ -4,6 +4,8 @@ Imports Newtonsoft.Json
 
 Public Class FormMain
     Private Sub Form_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.MaximumSize = Me.Size
+        Me.MinimumSize = Me.Size
         tipFirst.SetToolTip(tbpgOne, "已经设置好的一些OEM方案")
         tipFirst.SetToolTip(tbpgTwo, "自定义OEM信息")
         tipFirst.SetToolTip(btnClear, "清空当前的设置信息")
