@@ -141,9 +141,10 @@ Public Class FormMain
     End Sub
 
     Private Sub Btn_logo_Click(sender As Object, e As EventArgs) Handles btnLogo.Click
-        Dim dlg As New FormLogo
-        dlg.Left = Me.Left + 20
-        dlg.Top = Me.Top + 35
+        Dim dlg As New FormLogo With {
+            .Left = Me.Left + 20,
+            .Top = Me.Top + 35
+        }
         dlg.picLogo.Image = pnlLogo.BackgroundImage
         'form2窗体透明度
         dlg.Opacity = 93%

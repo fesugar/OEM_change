@@ -13,3 +13,5 @@
   Windows 8.1
   
   Windows 10
+
+![OEM信息修改器](https://github.com/fesugar/OEM_change/raw/master/Project_OEM_change_CSharp/screen.png)

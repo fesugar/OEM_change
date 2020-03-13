@@ -1,3 +1,5 @@
+https://github.com/fesugar/OEM_change
+
 修改电脑OEM信息
 
 软件主要操作部分
