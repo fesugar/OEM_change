@@ -1,4 +1,24 @@
-﻿using Microsoft.VisualBasic; //导入VB命名空间使用已有功能操作
+﻿#region << 版 本 注 释 >>
+/*----------------------------------------------------------------
+* 项目名称 ：OEMchange
+* 项目描述 ：OEM_change for CSharp
+* 类 名 称 ：FormMain
+* 类 描 述 ：主窗体
+* 命名空间 ：OEMchange
+* CLR 版本 ：4.0
+* 作    者 ：fesugar
+* 邮    箱 ：fesugar@fesugar.com
+* 创建时间 ：12:42 2020/3/16
+* 更新时间 ：12:42 2020/3/16
+* 版 本 号 ：v1.0.0.0
+* 参考文献 ：
+*******************************************************************
+* Copyright @ fesugar 2020. All rights reserved.
+*******************************************************************
+//----------------------------------------------------------------*/
+#endregion
+
+using Microsoft.VisualBasic; //导入VB命名空间使用已有功能操作
 using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
 using OEMchange.My;
@@ -15,6 +35,9 @@ using System.Xml;
 
 namespace OEMchange
 {
+    /// <summary>
+    /// 主窗体
+    /// </summary>
     public partial class FormMain : MetroFramework.Forms.MetroForm
     {
 
@@ -58,7 +81,7 @@ namespace OEMchange
             InitializeComponent();
         }
         /// <summary>
-        /// 清空按钮事件
+        /// 清空按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -101,7 +124,7 @@ namespace OEMchange
             }
         }
         /// <summary>
-        /// 重置按钮事件
+        /// 重置按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,7 +140,7 @@ namespace OEMchange
             this.txtSupportUrl.Text = Conversions.ToString("SupportURL");
         }
         /// <summary>
-        /// 图标按钮事件
+        /// 图标按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -134,7 +157,7 @@ namespace OEMchange
             flogo.Dispose();
         }
         /// <summary>
-        /// 修改按钮事件
+        /// 修改按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -182,7 +205,7 @@ namespace OEMchange
             }
         }
         /// <summary>
-        /// 窗体载入事件
+        /// 窗体载入时事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

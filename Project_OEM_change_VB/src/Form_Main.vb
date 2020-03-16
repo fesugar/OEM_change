@@ -1,8 +1,35 @@
-﻿Imports System.IO
+﻿#Region "版 本 注 释 "
+' ----------------------------------------------------------------
+' 项目名称 ：OEMchange
+' 项目描述 ：OEM_change for VB.NET
+' 类 名 称 ：FormMain
+' 类 描 述 ：主窗体
+' 命名空间 ：OEMchange
+' CLR 版本 ：4.0
+' 作    者 ：fesugar
+' 邮    箱 ：fesugar@fesugar.com
+' 创建时间 ：12:42 2020/3/16
+' 更新时间 ：12:42 2020/3/16
+' 版 本 号 ：v1.0.0.0
+' 参考文献 ：
+' *****************************************************************
+' * Copyright @ fesugar 2020. All rights reserved.
+' *****************************************************************
+' ----------------------------------------------------------------*
+#End Region
+
+Imports System.IO
 Imports System.Xml
 Imports Newtonsoft.Json
-
+''' <summary>
+''' 主窗体
+''' </summary>
 Public Class FormMain
+    ''' <summary>
+    ''' 窗体载入时事件
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Form_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.MaximumSize = Me.Size
         Me.MinimumSize = Me.Size
@@ -32,7 +59,10 @@ Public Class FormMain
 
         Next
     End Sub
-
+    ''' <summary>
+    ''' 获取注册表记录
+    ''' </summary>
+    ''' <returns></returns>
     Private Function GetINFO()
         '使用 GetValue 方法，指定路径和名称) 读取注册表项的值。 下面的示例读取 HKEY_CURRENT_USER\Software\MyApp 的值 Name 并在消息框中显示该
         'Dim readValue = My.Computer.Registry.GetValue(
@@ -61,7 +91,11 @@ Public Class FormMain
         Me.pnlLogo.BackgroundImage = Bitmap.FromFile(read_Logo_Value)
         grpSecond.Text = "当前系统中OEM信息预览"
     End Function
-
+    ''' <summary>
+    ''' 清空按钮单击事件
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Btn_clear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         tctlInfo.SelectedIndex = 1
         '清空输入框所有内容
@@ -73,7 +107,11 @@ Public Class FormMain
         pnlLogo.BackgroundImage = Nothing
         GetINFO()
     End Sub
-
+    ''' <summary>
+    ''' 重置按钮单击事件
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Btn_reset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         tctlInfo.SelectedIndex = 1
         '自动填写为默认的信息
@@ -86,7 +124,11 @@ Public Class FormMain
         txtSupportUrl.Text = "SupportURL"
 
     End Sub
-
+    ''' <summary>
+    ''' 修改按钮单击事件
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Btn_OK_Click(sender As Object, e As EventArgs) Handles btnOk.Click
         If MessageBox.Show("您确认继续操作更改吗？", "是否更改", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button2) = DialogResult.No Then Return
         Shell("cmd.exe /c REG SAVE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation bk /y", AppWinStyle.Hide, True, 3000)
@@ -139,7 +181,11 @@ Public Class FormMain
         Shell("cmd.exe /c control.exe system")
         GetINFO()
     End Sub
-
+    ''' <summary>
+    ''' 图标按钮单击事件
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Btn_logo_Click(sender As Object, e As EventArgs) Handles btnLogo.Click
         Dim dlg As New FormLogo With {
             .Left = Me.Left + 20,
@@ -151,7 +197,11 @@ Public Class FormMain
         dlg.ShowDialog()
         dlg.Dispose()
     End Sub
-
+    ''' <summary>
+    ''' 预设品牌选项框按钮
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub MetroComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDefaultScheme.SelectedIndexChanged
         Try
 

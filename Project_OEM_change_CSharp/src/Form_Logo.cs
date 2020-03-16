@@ -1,4 +1,24 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
+﻿#region << 版 本 注 释 >>
+/*----------------------------------------------------------------
+* 项目名称 ：OEMchange
+* 项目描述 ：OEM_change for CSharp
+* 类 名 称 ：FormLogo
+* 类 描 述 ：图标按钮窗体
+* 命名空间 ：OEMchange
+* CLR 版本 ：4.0
+* 作    者 ：fesugar
+* 邮    箱 ：fesugar@fesugar.com
+* 创建时间 ：12:42 2020/3/16
+* 更新时间 ：12:42 2020/3/16
+* 版 本 号 ：v1.0.0.0
+* 参考文献 ：
+*******************************************************************
+* Copyright @ fesugar 2020. All rights reserved.
+*******************************************************************
+//----------------------------------------------------------------*/
+#endregion
+
+using Microsoft.VisualBasic.CompilerServices;
 using OEMchange.My;
 using System;
 using System.Drawing;
@@ -6,6 +26,9 @@ using System.Windows.Forms;
 
 namespace OEMchange
 {
+    /// <summary>
+    /// 修改图标窗体
+    /// </summary>
     public partial class FormLogo : MetroFramework.Forms.MetroForm
     {
         public FormLogo()
@@ -13,7 +36,7 @@ namespace OEMchange
             InitializeComponent();
         }
         /// <summary>
-        /// 添加图标按钮事件
+        /// 添加图标按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,7 +74,7 @@ namespace OEMchange
             }
         }
         /// <summary>
-        /// 清空图标按钮事件
+        /// 清空图标按钮单击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
