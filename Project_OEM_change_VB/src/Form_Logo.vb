@@ -13,7 +13,7 @@
 ' 版 本 号 ：v1.0.0.0
 ' 参考文献 ：
 ' *****************************************************************
-' * Copyright @ fesugar 2020. All rights reserved.
+' * Copyright @ fesugar.com 2020. All rights reserved.
 ' *****************************************************************
 ' ----------------------------------------------------------------*
 #End Region
@@ -30,10 +30,10 @@ Public Class FormLogo
     ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Dim Browser As New OpenFileDialog With {
-            .FileName = "oem", ' 默认文件名
-            .DefaultExt = ".bmp", ' 默认文件扩展名
-            .Filter = "位图 |*.bmp", ' 对话框中可用的文件筛选选项
-            .Title = "浏览文件" '文件对话框标题
+            .FileName = "oem",
+            .DefaultExt = ".bmp",
+            .Filter = "位图 |*.bmp",
+            .Title = "浏览文件"
             }
         ' Show open file dialog box
         If Browser.ShowDialog() = System.Windows.Forms.DialogResult.OK Then

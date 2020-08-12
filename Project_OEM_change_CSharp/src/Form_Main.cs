@@ -13,7 +13,7 @@
 * 版 本 号 ：v1.0.0.0
 * 参考文献 ：
 *******************************************************************
-* Copyright @ fesugar 2020. All rights reserved.
+* Copyright @ fesugar.com 2020. All rights reserved.
 *******************************************************************
 //----------------------------------------------------------------*/
 #endregion
@@ -32,6 +32,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using Microsoft.Win32;
+using Microsoft.VisualBasic.Devices;
 
 namespace OEMchange
 {
@@ -103,12 +105,13 @@ namespace OEMchange
         {
             try
             {
-                object read_Manufacturer_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Manufacturer", null));
-                object read_Model_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Model", null));
-                object read_SupportHours_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportHours", null));
-                object read_SupportPhone_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportPhone", null));
-                object read_SupportURL_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportURL", null));
-                object read_Logo_Value = RuntimeHelpers.GetObjectValue(MyProject.Computer.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Logo", null));
+
+                object read_Manufacturer_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Manufacturer", null));
+                object read_Model_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Model", null));
+                object read_SupportHours_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportHours", null));
+                object read_SupportPhone_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportPhone", null));
+                object read_SupportURL_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportURL", null));
+                object read_Logo_Value = RuntimeHelpers.GetObjectValue(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Logo", null));
                 //获取注册表相关的值并显示
                 lblManufacturer.Text = Conversions.ToString(read_Manufacturer_Value);
                 lblModel.Text = Conversions.ToString(read_Model_Value);
@@ -118,7 +121,7 @@ namespace OEMchange
                 this.pnlLogo.BackgroundImage = Bitmap.FromFile(Conversions.ToString(read_Logo_Value));
                 grpSecond.Text = IniRead("grpSecond1", "Text", "当前系统中OEM信息预览");
             }
-            catch (Exception ex) when (ex.GetType() == typeof(FileNotFoundException))
+            catch (FileNotFoundException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -169,11 +172,11 @@ namespace OEMchange
                 Interaction.Shell(@"cmd.exe /c REG SAVE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation bk /y", AppWinStyle.Hide, true, 0xbb8);
                 try
                 {
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Manufacturer", this.txtManufacturer.Text);
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Model", this.txtModel.Text);
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportPhone", this.txtSupportPhone.Text);
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportHours", this.txtSupportHours.Text);
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportURL", this.txtSupportUrl.Text);
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Manufacturer", this.txtManufacturer.Text);
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "Model", this.txtModel.Text);
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportPhone", this.txtSupportPhone.Text);
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportHours", this.txtSupportHours.Text);
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "SupportURL", this.txtSupportUrl.Text);
                     string str = Guid.NewGuid().ToString();
                     if (!Directory.Exists(Conversions.ToString(Environment.GetFolderPath(Environment.SpecialFolder.System)) + @"\oobe\info"))
                     {
@@ -183,7 +186,7 @@ namespace OEMchange
                     {
                         this.pnlLogo.BackgroundImage.Save(Conversions.ToString(Environment.GetFolderPath(Environment.SpecialFolder.System)) + @"\oobe\info\" + str + "_logo.bmp", ImageFormat.Bmp);
                     }
-                    MyProject.Computer.Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "LOGO", Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\oobe\info\" + str + "_logo.bmp");
+                   Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "LOGO", Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\oobe\info\" + str + "_logo.bmp");
                 }
                 catch (DirectoryNotFoundException exception1)
                 {
@@ -196,7 +199,7 @@ namespace OEMchange
                 Interaction.Shell("cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
                 this.GetINFO();
                 FindAndMoveMsgBox(this.Location.X + this.Width / 6, this.Location.Y + this.Height / 3, true, IniRead("msgbox2", "Title", "对结果不满意"));
-                if (MessageBox.Show(IniRead("msgbox2", "Text", "需要撤销对系统OEM信息的更改吗？"),IniRead("msgbox2", "Title", "对结果不满意"), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) != DialogResult.No)
+                if (MessageBox.Show(IniRead("msgbox2", "Text", "需要撤销对系统OEM信息的更改吗？"), IniRead("msgbox2", "Title", "对结果不满意"), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) != DialogResult.No)
                 {
                     Interaction.Shell(@"cmd.exe /c REG RESTORE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation bk", AppWinStyle.Hide, true, 0xbb8);
                     Interaction.Shell("cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
@@ -217,9 +220,9 @@ namespace OEMchange
                 this.MinimumSize = this.Size;
                 this.GetINFO();
                 this.StringInitialize();
-                lblCurrentSystem.Text += My.MyProject.Computer.Info.OSFullName;
+                lblCurrentSystem.Text += new ComputerInfo().OSFullName;
                 XmlDocument doc = new XmlDocument();
-                doc.Load(MyProject.Application.Info.DirectoryPath + @"\content.xml");
+                doc.Load(System.Windows.Forms.Application.StartupPath + @"\content.xml");
                 XmlNode xmlNode = doc.SelectSingleNode("combox");
                 IEnumerator enumerator = xmlNode.ChildNodes.GetEnumerator();
                 while (enumerator.MoveNext())
@@ -230,7 +233,7 @@ namespace OEMchange
                     this.cboDefaultScheme.Items.Add(RuntimeHelpers.GetObjectValue(NewLateBinding.LateGet(NewLateBinding.LateGet(objectValue, null, "Attributes", arguments, null, null, null), null, "value", new object[0], null, null, null)));
                 }
             }
-            catch (Exception ex) when (ex.GetType() != typeof(AggregateException))
+            catch (AggregateException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -284,7 +287,7 @@ namespace OEMchange
             try
             {
 
-                string f = File.OpenText(MyProject.Application.Info.DirectoryPath + @"\content.json").ReadToEnd();
+                string f = File.OpenText(System.Windows.Forms.Application.StartupPath + @"\content.json").ReadToEnd();
                 lblManufacturer.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["Manufacturer"].ToString();
                 lblModel.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["Model"].ToString();
                 lblSupportHours.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["SupportHours"].ToString();
@@ -295,7 +298,7 @@ namespace OEMchange
                 txtSupportHours.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["SupportHours"].ToString();
                 txtSupportPhone.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["SupportPhone"].ToString();
                 txtSupportUrl.Text = ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["SupportURL"].ToString();
-                pnlLogo.BackgroundImage = Bitmap.FromFile(MyProject.Application.Info.DirectoryPath + ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["Logo"].ToString());
+                pnlLogo.BackgroundImage = Bitmap.FromFile(System.Windows.Forms.Application.StartupPath + ((Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(f))[Conversions.ToString(cboDefaultScheme.Text)]["Logo"].ToString());
                 grpSecond.Text = IniRead("grpSecond2", "Text", "当前所设置中的OEM信息预览");
             }
             catch (FileNotFoundException exception1)
@@ -321,8 +324,8 @@ namespace OEMchange
         /// <returns></returns>
         public static string IniRead(string Section, string Value, string Give)
         {
-            IniFiles iniFiles = new IniFiles(My.MyProject.Application.Info.DirectoryPath + @"\string.ini");
-            return iniFiles.ReadString(Section, Value,Give);
+            IniFiles iniFiles = new IniFiles(System.Windows.Forms.Application.StartupPath + @"\string.ini");
+            return iniFiles.ReadString(Section, Value, Give);
 
         }
 

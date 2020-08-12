@@ -13,12 +13,14 @@
 * 版 本 号 ：v1.0.0.0
 * 参考文献 ：
 *******************************************************************
-* Copyright @ fesugar 2020. All rights reserved.
+* Copyright @ fesugar.com 2020. All rights reserved.
 *******************************************************************
 //----------------------------------------------------------------*/
 #endregion
 
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.VisualBasic.Devices;
 using OEMchange.My;
 using System;
 using System.Drawing;
@@ -57,7 +59,7 @@ namespace OEMchange
                     try
                     {
                         this.picLogo.ImageLocation = dialog.FileName;
-                        MyProject.Forms.FormMain.pnlLogo.BackgroundImage = Image.FromFile(dialog.FileName);
+                        My.MyProject.Forms.FormMain .pnlLogo.BackgroundImage = Image.FromFile(dialog.FileName);
                     }
                     catch (OutOfMemoryException exception1)
                     {
@@ -100,7 +102,7 @@ namespace OEMchange
         /// <returns></returns>
         public static string IniRead(string Section, string Value, string Give)
         {
-            IniFiles iniFiles = new IniFiles(My.MyProject.Application.Info.DirectoryPath + @"\string.ini");
+            IniFiles iniFiles = new IniFiles(System.Windows.Forms.Application.StartupPath + @"\string.ini");
             return iniFiles.ReadString(Section, Value, Give);
 
         }

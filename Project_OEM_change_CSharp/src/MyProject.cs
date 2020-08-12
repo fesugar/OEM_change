@@ -103,9 +103,7 @@ namespace OEMchange.My
                     {
                         return Activator.CreateInstance<T>();
                     }
-#pragma warning disable CS7095 // 筛选器表达式是常量 “true”
-                    catch when (true)
-#pragma warning restore CS7095 // 筛选器表达式是常量 “true”
+                    catch(Exception)
                     {
                         TargetInvocationException exception=null ;
                         string[] args = new string[] { exception.InnerException.Message };

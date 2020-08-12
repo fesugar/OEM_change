@@ -619,8 +619,6 @@
         }
 
         #endregion
-
-        internal MetroFramework.Controls.MetroPanel pnlLogo;
         internal MetroFramework.Controls.MetroLink lblSupportUrl;
         internal MetroFramework.Controls.MetroLabel lblSupportHours;
         internal MetroFramework.Controls.MetroLabel lblSupportPhone;
@@ -656,6 +654,7 @@
         internal MetroFramework.Controls.MetroTabControl tctlInfo;
         internal System.Windows.Forms.GroupBox grpSecond;
         internal System.Windows.Forms.GroupBox grpFirst;
+        internal MetroFramework.Controls.MetroPanel pnlLogo;
     }
 }
 

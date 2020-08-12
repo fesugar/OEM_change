@@ -29,5 +29,12 @@ del exe\Newtonsoft.Json.dll
 
 if exist %pt%\exe\OEM_change.exe (rename %pt%\exe\OEM_change.exe OEMchange.exe && echo success) else (echo ERROR) 
 
+rd ..\build\ /s /q
+
+xcopy exe ..\build\ /e /i /f /v /h /y
+
+rd exe /s /q
 
 pause
+
+explorer /e,/select,..\build\OEMchange.exe
