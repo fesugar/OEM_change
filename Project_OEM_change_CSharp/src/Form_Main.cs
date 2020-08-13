@@ -329,5 +329,53 @@ namespace OEMchange
 
         }
 
+        /// <summary>
+        /// 修复最大化闪烁和黑块问题
+        /// https://blog.csdn.net/qq_25465525/article/details/88739837?
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
+        ///// <summary>
+        ///// 优化闪烁问题
+        ///// https://blog.csdn.net/jemi_A/article/details/105199006
+        ///// </summary>
+        //const int WM_SYSCOMMAND = 0x112;
+        //const int SC_CLOSE = 0xF060;
+        //const int SC_MINIMIZE = 0xF020;
+        //const int SC_MAXIMIZE = 0xF030;
+        //protected override void WndProc(ref Message m)
+        //{
+        //    if (m.Msg == WM_SYSCOMMAND)
+        //    {
+        //        if (m.WParam.ToInt32() == SC_MINIMIZE) //是否点击最小化
+        //        {
+        //            this.SuspendLayout();
+        //            this.WindowState = FormWindowState.Minimized;
+        //            this.ResumeLayout(false);
+   
+        //        }
+
+        //        if (m.WParam.ToInt32() == SC_MAXIMIZE)
+        //        {
+        //            this.SuspendLayout();
+        //            this.WindowState = FormWindowState.Maximized;
+        //            this.ResumeLayout(false);
+        //        }
+
+        //        if (m.WParam.ToInt32() == SC_CLOSE)
+        //        { //.....................
+        //        }
+
+        //    }
+        //    base.WndProc(ref m);
+        //}
     }
 }
