@@ -81,6 +81,11 @@ namespace OEMchange
         public FormMain()
         {
             InitializeComponent();
+
+#if DEBUG
+            // build time
+            Console.WriteLine(System.IO.File.GetLastWriteTime(this.GetType().Assembly.Location));
+#endif
         }
         /// <summary>
         /// 清空按钮单击事件
@@ -134,10 +139,10 @@ namespace OEMchange
         private void Btn_Reset_Click(object sender, EventArgs e)
         {
             this.tctlInfo.SelectedIndex = 1;
-            Interaction.Shell("cmd.exe /c wmic /output:tmp BASEBOARD get Manufacturer ", AppWinStyle.Hide, true, 0xbb8);
-            this.txtManufacturer.Text = File.ReadAllText("tmp");
-            Interaction.Shell("cmd.exe /c wmic /output:tmp BASEBOARD get Model ", AppWinStyle.Hide, true, 0xbb8);
-            this.txtModel.Text = File.ReadAllText("tmp");
+            Interaction.Shell(@"cmd.exe /c wmic /output:tmp BASEBOARD get Manufacturer /value", AppWinStyle.Hide, true, 0xbb8);
+            this.txtManufacturer.Text = File.ReadAllText("tmp").Split('=')[1];
+            Interaction.Shell(@"cmd.exe /c wmic /output:tmp BASEBOARD get Model /value", AppWinStyle.Hide, true, 0xbb8);
+            this.txtModel.Text = File.ReadAllText("tmp").Split('=')[1];
             this.txtSupportHours.Text = Conversions.ToString("SupportHours");
             this.txtSupportPhone.Text = Conversions.ToString("SupportPhone");
             this.txtSupportUrl.Text = Conversions.ToString("SupportURL");
@@ -186,7 +191,7 @@ namespace OEMchange
                     {
                         this.pnlLogo.BackgroundImage.Save(Conversions.ToString(Environment.GetFolderPath(Environment.SpecialFolder.System)) + @"\oobe\info\" + str + "_logo.bmp", ImageFormat.Bmp);
                     }
-                   Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "LOGO", Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\oobe\info\" + str + "_logo.bmp");
+                    Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation", "LOGO", Environment.GetFolderPath(Environment.SpecialFolder.System) + @"\oobe\info\" + str + "_logo.bmp");
                 }
                 catch (DirectoryNotFoundException exception1)
                 {
@@ -196,13 +201,13 @@ namespace OEMchange
                     return;
                 }
 
-                Interaction.Shell("cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
+                Interaction.Shell(@"cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
                 this.GetINFO();
                 FindAndMoveMsgBox(this.Location.X + this.Width / 6, this.Location.Y + this.Height / 3, true, IniRead("msgbox2", "Title", "对结果不满意"));
                 if (MessageBox.Show(IniRead("msgbox2", "Text", "需要撤销对系统OEM信息的更改吗？"), IniRead("msgbox2", "Title", "对结果不满意"), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) != DialogResult.No)
                 {
                     Interaction.Shell(@"cmd.exe /c REG RESTORE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation bk", AppWinStyle.Hide, true, 0xbb8);
-                    Interaction.Shell("cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
+                    Interaction.Shell(@"cmd.exe /c control.exe system", AppWinStyle.MinimizedFocus, false, -1);
                     this.GetINFO();
                 }
             }
@@ -216,8 +221,9 @@ namespace OEMchange
         {
             try
             {
-                this.MaximumSize = this.Size;
-                this.MinimumSize = this.Size;
+                //this.MaximumSize = this.Size;
+                //this.MinimumSize = this.Size;
+                Resizable = false;
                 this.GetINFO();
                 this.StringInitialize();
                 lblCurrentSystem.Text += new ComputerInfo().OSFullName;
@@ -237,6 +243,17 @@ namespace OEMchange
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Application.Exit();
+            }
+
+            //about initia
+            pl_about.Visible = false;
+            lbl_buildtime.Text += System.IO.File.GetLastWriteTime(this.GetType().Assembly.Location);
+            lbl_author.Text += "严圣川";
+            lbl_prpe.Text += @"https://github.com/fesugar/OEM_change";
         }
         /// <summary>
         /// 初始化字符资源
@@ -343,6 +360,25 @@ namespace OEMchange
             }
         }
 
+        /// <summary>
+        /// about 标签鼠标进入控件事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void metroLink_about_MouseEnter(object sender, EventArgs e)
+        {
+            pl_about.Visible = true;
+        }
+        /// <summary>
+        /// about 标签鼠标离开控件事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void metroLink_about_MouseLeave(object sender, EventArgs e)
+        {
+            pl_about.Visible = false;
+        }
+
         ///// <summary>
         ///// 优化闪烁问题
         ///// https://blog.csdn.net/jemi_A/article/details/105199006
@@ -360,7 +396,7 @@ namespace OEMchange
         //            this.SuspendLayout();
         //            this.WindowState = FormWindowState.Minimized;
         //            this.ResumeLayout(false);
-   
+
         //        }
 
         //        if (m.WParam.ToInt32() == SC_MAXIMIZE)

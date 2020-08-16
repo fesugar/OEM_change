@@ -65,11 +65,25 @@
             this.tctlInfo = new MetroFramework.Controls.MetroTabControl();
             this.grpSecond = new System.Windows.Forms.GroupBox();
             this.grpFirst = new System.Windows.Forms.GroupBox();
+            this.metroLink_about = new MetroFramework.Controls.MetroLink();
+            this.pl_about = new System.Windows.Forms.Panel();
+            this.lbl_prpe = new System.Windows.Forms.Label();
+            this.grp_donate = new System.Windows.Forms.GroupBox();
+            this.lbl_WeChat = new System.Windows.Forms.Label();
+            this.lbl_Alipay = new System.Windows.Forms.Label();
+            this.pic_WeChat = new System.Windows.Forms.PictureBox();
+            this.pic_Alipay = new System.Windows.Forms.PictureBox();
+            this.lbl_author = new System.Windows.Forms.Label();
+            this.lbl_buildtime = new System.Windows.Forms.Label();
             this.tbpgTwo.SuspendLayout();
             this.tbpgOne.SuspendLayout();
             this.tctlInfo.SuspendLayout();
             this.grpSecond.SuspendLayout();
             this.grpFirst.SuspendLayout();
+            this.pl_about.SuspendLayout();
+            this.grp_donate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_WeChat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Alipay)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLogo
@@ -589,11 +603,116 @@
             this.grpFirst.TabStop = false;
             this.grpFirst.Text = "信息修改";
             // 
+            // metroLink_about
+            // 
+            this.metroLink_about.AutoSize = true;
+            this.metroLink_about.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.metroLink_about.Location = new System.Drawing.Point(278, 35);
+            this.metroLink_about.Name = "metroLink_about";
+            this.metroLink_about.Size = new System.Drawing.Size(57, 25);
+            this.metroLink_about.TabIndex = 14;
+            this.metroLink_about.Text = "About";
+            this.metroLink_about.UseSelectable = true;
+            this.metroLink_about.MouseEnter += new System.EventHandler(this.metroLink_about_MouseEnter);
+            this.metroLink_about.MouseLeave += new System.EventHandler(this.metroLink_about_MouseLeave);
+            // 
+            // pl_about
+            // 
+            this.pl_about.BackColor = System.Drawing.Color.Silver;
+            this.pl_about.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pl_about.Controls.Add(this.lbl_prpe);
+            this.pl_about.Controls.Add(this.grp_donate);
+            this.pl_about.Controls.Add(this.lbl_author);
+            this.pl_about.Controls.Add(this.lbl_buildtime);
+            this.pl_about.Location = new System.Drawing.Point(75, 114);
+            this.pl_about.Name = "pl_about";
+            this.pl_about.Size = new System.Drawing.Size(307, 348);
+            this.pl_about.TabIndex = 15;
+            // 
+            // lbl_prpe
+            // 
+            this.lbl_prpe.Location = new System.Drawing.Point(10, 72);
+            this.lbl_prpe.Name = "lbl_prpe";
+            this.lbl_prpe.Size = new System.Drawing.Size(286, 53);
+            this.lbl_prpe.TabIndex = 7;
+            this.lbl_prpe.Text = "Project Page:";
+            // 
+            // grp_donate
+            // 
+            this.grp_donate.Controls.Add(this.lbl_WeChat);
+            this.grp_donate.Controls.Add(this.lbl_Alipay);
+            this.grp_donate.Controls.Add(this.pic_WeChat);
+            this.grp_donate.Controls.Add(this.pic_Alipay);
+            this.grp_donate.Location = new System.Drawing.Point(7, 128);
+            this.grp_donate.Name = "grp_donate";
+            this.grp_donate.Size = new System.Drawing.Size(293, 209);
+            this.grp_donate.TabIndex = 6;
+            this.grp_donate.TabStop = false;
+            this.grp_donate.Text = "Donate";
+            // 
+            // lbl_WeChat
+            // 
+            this.lbl_WeChat.AutoSize = true;
+            this.lbl_WeChat.Location = new System.Drawing.Point(194, 172);
+            this.lbl_WeChat.Name = "lbl_WeChat";
+            this.lbl_WeChat.Size = new System.Drawing.Size(55, 15);
+            this.lbl_WeChat.TabIndex = 5;
+            this.lbl_WeChat.Text = "WeChat";
+            // 
+            // lbl_Alipay
+            // 
+            this.lbl_Alipay.AutoSize = true;
+            this.lbl_Alipay.Location = new System.Drawing.Point(41, 172);
+            this.lbl_Alipay.Name = "lbl_Alipay";
+            this.lbl_Alipay.Size = new System.Drawing.Size(55, 15);
+            this.lbl_Alipay.TabIndex = 4;
+            this.lbl_Alipay.Text = "Alipay";
+            // 
+            // pic_WeChat
+            // 
+            this.pic_WeChat.Image = ((System.Drawing.Image)(resources.GetObject("pic_WeChat.Image")));
+            this.pic_WeChat.Location = new System.Drawing.Point(153, 29);
+            this.pic_WeChat.Name = "pic_WeChat";
+            this.pic_WeChat.Size = new System.Drawing.Size(133, 133);
+            this.pic_WeChat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_WeChat.TabIndex = 3;
+            this.pic_WeChat.TabStop = false;
+            // 
+            // pic_Alipay
+            // 
+            this.pic_Alipay.Image = ((System.Drawing.Image)(resources.GetObject("pic_Alipay.Image")));
+            this.pic_Alipay.Location = new System.Drawing.Point(6, 29);
+            this.pic_Alipay.Name = "pic_Alipay";
+            this.pic_Alipay.Size = new System.Drawing.Size(133, 133);
+            this.pic_Alipay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_Alipay.TabIndex = 2;
+            this.pic_Alipay.TabStop = false;
+            // 
+            // lbl_author
+            // 
+            this.lbl_author.AutoSize = true;
+            this.lbl_author.Location = new System.Drawing.Point(10, 41);
+            this.lbl_author.Name = "lbl_author";
+            this.lbl_author.Size = new System.Drawing.Size(63, 15);
+            this.lbl_author.TabIndex = 1;
+            this.lbl_author.Text = "Author:";
+            // 
+            // lbl_buildtime
+            // 
+            this.lbl_buildtime.AutoSize = true;
+            this.lbl_buildtime.Location = new System.Drawing.Point(10, 14);
+            this.lbl_buildtime.Name = "lbl_buildtime";
+            this.lbl_buildtime.Size = new System.Drawing.Size(95, 15);
+            this.lbl_buildtime.TabIndex = 0;
+            this.lbl_buildtime.Text = "Build time:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 577);
+            this.Controls.Add(this.pl_about);
+            this.Controls.Add(this.metroLink_about);
             this.Controls.Add(this.lblCurrentSystem);
             this.Controls.Add(this.grpSecond);
             this.Controls.Add(this.grpFirst);
@@ -601,7 +720,6 @@
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.SystemShadow;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "OEM  信息更改工具";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tbpgTwo.ResumeLayout(false);
@@ -613,6 +731,12 @@
             this.grpSecond.PerformLayout();
             this.grpFirst.ResumeLayout(false);
             this.grpFirst.PerformLayout();
+            this.pl_about.ResumeLayout(false);
+            this.pl_about.PerformLayout();
+            this.grp_donate.ResumeLayout(false);
+            this.grp_donate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_WeChat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Alipay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,11 +774,21 @@
         internal MetroFramework.Controls.MetroButton btnOk;
         internal MetroFramework.Controls.MetroButton btnLogo;
         internal MetroFramework.Controls.MetroButton btnReset;
-        internal MetroFramework.Controls.MetroButton btnClear;
         internal MetroFramework.Controls.MetroTabControl tctlInfo;
         internal System.Windows.Forms.GroupBox grpSecond;
         internal System.Windows.Forms.GroupBox grpFirst;
         internal MetroFramework.Controls.MetroPanel pnlLogo;
+        internal MetroFramework.Controls.MetroButton btnClear;
+        private MetroFramework.Controls.MetroLink metroLink_about;
+        private System.Windows.Forms.Panel pl_about;
+        private System.Windows.Forms.Label lbl_prpe;
+        private System.Windows.Forms.GroupBox grp_donate;
+        private System.Windows.Forms.Label lbl_WeChat;
+        private System.Windows.Forms.Label lbl_Alipay;
+        private System.Windows.Forms.PictureBox pic_WeChat;
+        private System.Windows.Forms.PictureBox pic_Alipay;
+        private System.Windows.Forms.Label lbl_author;
+        private System.Windows.Forms.Label lbl_buildtime;
     }
 }
 
